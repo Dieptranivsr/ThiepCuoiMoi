@@ -4,7 +4,7 @@
 - `index.html`: nội dung và giao diện thiệp (HTML + CSS).
 - `js/main.js`: toàn bộ mã chạy (cuộn phim, lịch trình, album, lời chúc, hộp quà, số tài khoản...). Các mục `PARTIES`, `CEREMONIES`, `PLACES`, `GIFT_ACCOUNTS`, `galleryImages`, `WISH_API_URL`... nhắc tới bên dưới đều nằm trong file này.
 - `images/anh01.jpg` ... `anh12.jpg`: ảnh cưới (ảnh bìa là `anh10.jpg`, ảnh tròn chú rể/cô dâu cắt từ `anh12.jpg`).
-- `yes-1-do-tu-giay-4.mp3`: nhạc nền đã cắt 4 giây đầu, tự phát khi khách chọn phía khách mời để mở thiệp.
+- `music/yeu2-tu-giay-28.mp3`: nhạc nền Yêu 2 đã cắt từ giây 28 (bỏ nhạc dạo), tự phát khi khách chọn phía khách mời để mở thiệp.
 - `google-apps-script.gs`: mã dán vào Google Apps Script để lưu lời chúc và xác nhận tham dự vào Google Sheet.
 
 ## 2. Sửa nội dung
@@ -39,7 +39,7 @@ Xóa lời chúc không phù hợp bằng cách xóa dòng trong tab `LoiChuc`.
 
 ## 5. Đưa lên GitHub Pages
 1. Tạo repo mới (Public).
-2. **Add file → Upload files**: kéo `index.html`, thư mục `js/`, thư mục `images/` và `yes-1-do-tu-giay-4.mp3` → **Commit changes**.
+2. **Add file → Upload files**: kéo `index.html`, thư mục `js/`, thư mục `images/`, thư mục `music/` (gồm `yeu2-tu-giay-28.mp3`) → **Commit changes**.
 3. **Settings → Pages** → *Branch* chọn `main` và `/ (root)` → **Save**.
 4. Sau 1–2 phút thiệp có tại `https://ten-cua-ban.github.io/ten-repo/`.
 
