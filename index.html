@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thiệp Cưới Tuấn Điệp & Đinh Thảo</title>
-    <script>document.documentElement.classList.toggle('reverse-cover-chibis', Math.random() < 0.5);</script>
+    <script>
+        const coverChibiImages = Array.from({ length: 7 }, (_, i) => i + 1);
+        const coverChibiTopIndex = Math.floor(Math.random() * coverChibiImages.length);
+        const [coverChibiTop] = coverChibiImages.splice(coverChibiTopIndex, 1);
+        const coverChibiBottom = coverChibiImages[Math.floor(Math.random() * coverChibiImages.length)];
+        document.documentElement.classList.toggle('reverse-cover-chibis', Math.random() < 0.5);
+        document.documentElement.dataset.coverChibiTop = coverChibiTop;
+        document.documentElement.dataset.coverChibiBottom = coverChibiBottom;
+    </script>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
@@ -227,7 +235,7 @@
         /* Nền hồng màn hình phong bì + chibi cô dâu chú rể rải ngẫu nhiên */
         .cover-pink { background: radial-gradient(circle at 18% 12%, #FFF1F5 0%, transparent 42%), radial-gradient(circle at 85% 88%, #FDE2EA 0%, transparent 45%), linear-gradient(160deg, #FBD3DF, #F5B5C7); }
         .cover-card-wrap { position: relative; width: 100%; max-width: 28rem; }
-        .cover-chibi { z-index: 20; pointer-events: none; width: 112px; height: auto; }
+        .cover-chibi { z-index: 20; pointer-events: none; width: 112px; height: 112px; object-fit: contain; }
         .cover-chibi-top { left: -56px; top: 40px; }
         .cover-chibi-bottom { right: -56px; bottom: 80px; }
         html.reverse-cover-chibis .cover-chibi-top { left: auto; right: -56px; }
@@ -373,8 +381,12 @@
             </div>
         </div>
         <!-- Một cặp chibi ở hai góc chéo; đường chéo được chọn ngẫu nhiên -->
-        <img class="chibi cover-chibi cover-chibi-top" src="images/chibi-5.png" alt="" style="--r:-6deg">
-        <img class="chibi cover-chibi cover-chibi-bottom" src="images/chibi-6.png" alt="" style="--r:5deg;--fd:-1.6s">
+        <img class="chibi cover-chibi cover-chibi-top" alt="" style="--r:-6deg">
+        <img class="chibi cover-chibi cover-chibi-bottom" alt="" style="--r:5deg;--fd:-1.6s">
+        <script>
+            document.querySelector('.cover-chibi-top').src = `images/chibi-${document.documentElement.dataset.coverChibiTop}.png`;
+            document.querySelector('.cover-chibi-bottom').src = `images/chibi-${document.documentElement.dataset.coverChibiBottom}.png`;
+        </script>
         </div>
     </div>
 
