@@ -162,6 +162,15 @@ function toggleMusic(forcePlay = false) {
     const musicIcon = document.getElementById('musicIcon');
 
     if (forcePlay || audio.paused) {
+        if (forcePlay) {
+            if (audio.readyState >= HTMLMediaElement.HAVE_METADATA) {
+                if (audio.duration > 4) audio.currentTime = 4;
+            } else {
+                audio.addEventListener('loadedmetadata', () => {
+                    if (audio.duration > 4) audio.currentTime = 4;
+                }, { once: true });
+            }
+        }
         audio.play().then(() => {
             isMusicPlaying = true;
             musicBtn.classList.add('spin-music');

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thiệp Cưới Tuấn Điệp & Đinh Thảo</title>
+    <script>document.documentElement.classList.toggle('reverse-cover-chibis', Math.random() < 0.5);</script>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
@@ -226,19 +227,22 @@
         /* Nền hồng màn hình phong bì + chibi cô dâu chú rể rải ngẫu nhiên */
         .cover-pink { background: radial-gradient(circle at 18% 12%, #FFF1F5 0%, transparent 42%), radial-gradient(circle at 85% 88%, #FDE2EA 0%, transparent 45%), linear-gradient(160deg, #FBD3DF, #F5B5C7); }
         .cover-card-wrap { position: relative; width: 100%; max-width: 28rem; }
-        .cover-chibi { z-index: 20; pointer-events: none; width: 170px; height: auto; }
-        .cover-chibi-l { left: -85px; bottom: -10px; }
-        .cover-chibi-r { right: -95px; top: 10px; width: 190px; }
+        .cover-chibi { z-index: 20; pointer-events: none; width: 112px; height: auto; }
+        .cover-chibi-top { left: -56px; top: 40px; }
+        .cover-chibi-bottom { right: -56px; bottom: 80px; }
+        html.reverse-cover-chibis .cover-chibi-top { left: auto; right: -56px; }
+        html.reverse-cover-chibis .cover-chibi-bottom { right: auto; left: -56px; }
         @media (max-width: 860px) {
-            .cover-chibi { width: 96px; }
-            .cover-chibi-l { left: -14px; bottom: -58px; }
-            .cover-chibi-r { right: -14px; top: -56px; width: 104px; }
+            .cover-chibi { width: 76px; }
+            .cover-chibi-top { left: -38px; top: 32px; }
+            .cover-chibi-bottom { right: -38px; bottom: 65px; }
+            html.reverse-cover-chibis .cover-chibi-top { right: -38px; }
+            html.reverse-cover-chibis .cover-chibi-bottom { left: -38px; }
         }
         .chibi { position: absolute; filter: drop-shadow(0 4px 6px rgba(142,59,85,.22));
-            animation: chibiPop .6s cubic-bezier(.3,1.6,.5,1) both, chibiFloat var(--t, 3.4s) ease-in-out infinite; animation-delay: var(--pd, 0s), var(--fd, 0s); }
+            animation: chibiFloat var(--t, 4.2s) ease-in-out infinite; animation-delay: var(--fd, 0s); }
         .chibi svg { width: 100%; height: auto; display: block; }
-        @keyframes chibiPop { from { opacity: 0; scale: .3; } }
-        @keyframes chibiFloat { 0%,100% { transform: translateY(0) rotate(var(--r, 0deg)); } 50% { transform: translateY(-10px) rotate(calc(var(--r, 0deg) * -1)); } }
+        @keyframes chibiFloat { 0%,100% { transform: translateY(0) rotate(var(--r, 0deg)); } 50% { transform: translateY(-6px) rotate(calc(var(--r, 0deg) * -1)); } }
         @media (prefers-reduced-motion: reduce) { .chibi { animation: none; transform: rotate(var(--r, 0deg)); } }
         /* Nút chọn khách mời trên phong bì */
         .guest-choice { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -368,9 +372,9 @@
                 </button>
             </div>
         </div>
-        <!-- 2 chibi đứng cạnh tấm thiệp -->
-        <img class="chibi cover-chibi cover-chibi-l" src="images/chibi-5.png" alt="" style="--r:-6deg">
-        <img class="chibi cover-chibi cover-chibi-r" src="images/chibi-6.png" alt="" style="--r:5deg;--fd:-1.6s">
+        <!-- Một cặp chibi ở hai góc chéo; đường chéo được chọn ngẫu nhiên -->
+        <img class="chibi cover-chibi cover-chibi-top" src="images/chibi-5.png" alt="" style="--r:-6deg">
+        <img class="chibi cover-chibi cover-chibi-bottom" src="images/chibi-6.png" alt="" style="--r:5deg;--fd:-1.6s">
         </div>
     </div>
 
