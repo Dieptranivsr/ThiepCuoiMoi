@@ -147,9 +147,10 @@ function openWeddingInvitation(side) {
     const envelope = document.getElementById('envelopeCover');
     envelope.classList.add('opacity-0', 'pointer-events-none');
 
-    playFilmReel(() => document.getElementById('hero').classList.add('play'));
-    // Auto play music when opened
-    toggleMusic(true);
+    // Start the music first so it is already playing when the first frame appears.
+    toggleMusic(true).then(() => {
+        playFilmReel(() => document.getElementById('hero').classList.add('play'));
+    });
 
     // Generate petals animation
     createPetals();
@@ -162,27 +163,21 @@ function toggleMusic(forcePlay = false) {
     const musicIcon = document.getElementById('musicIcon');
 
     if (forcePlay || audio.paused) {
-        if (forcePlay) {
-            if (audio.readyState >= HTMLMediaElement.HAVE_METADATA) {
-                if (audio.duration > 4) audio.currentTime = 4;
-            } else {
-                audio.addEventListener('loadedmetadata', () => {
-                    if (audio.duration > 4) audio.currentTime = 4;
-                }, { once: true });
-            }
-        }
-        audio.play().then(() => {
+        return audio.play().then(() => {
             isMusicPlaying = true;
             musicBtn.classList.add('spin-music');
             musicIcon.className = "fas fa-compact-disc text-lg";
+            return true;
         }).catch(() => {
             console.log("Audio play blocked by browser policy");
+            return false;
         });
     } else {
         audio.pause();
         isMusicPlaying = false;
         musicBtn.classList.remove('spin-music');
         musicIcon.className = "fas fa-music text-lg";
+        return Promise.resolve(false);
     }
 }
 
